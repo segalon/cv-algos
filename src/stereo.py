@@ -24,26 +24,3 @@ def disparity_ssd(l_im, r_im, W, pad=False):
             d_im[y-offset, xl-offset] = np.abs(xl - min_idx[0])
     return d_im
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
