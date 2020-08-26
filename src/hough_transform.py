@@ -126,9 +126,4 @@ def draw_circles(im, peaks, r):
         cv2.circle(im, (a, b), r, clr, thickness=1)
 
 
-im_path0 = '../images/squares.png'
-im_path1 = '../images/coins.png'
-
-find_circles(im_path1, [20, 25], threshold=10)
-find_lines(im_path1, threshold=80)
 
