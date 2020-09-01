@@ -4,14 +4,18 @@ from scipy.signal import convolve2d
 from scipy.ndimage import gaussian_filter
 
 """
-returns the magnitude of the gradient of the image
+returns the magnitude of gradient of image
 """
-def comp_grad(im):
-    sobelx = cv2.Sobel(im, cv2.CV_64F, 1, 0, ksize=3)
-    sobely = cv2.Sobel(im, cv2.CV_64F, 0, 1, ksize=3)
+def comp_grads(im):
+    dx = np.array([[-1, 0, 1]])
+    dy = np.array([-1, 0, 1])
+    dy = dy[..., np.newaxis]
 
-    grad_magnt = np.sqrt(sobelx**2 + sobely**2)
-    return grad_magnt
+    dim_x = convolve2d(im, dx, mode="same")
+    dim_y = convolve2d(im, dy, mode="same")
+
+    return np.sqrt(dim_x**2 + dim_y**2)
+
 
 
 def harris_corner_detector():

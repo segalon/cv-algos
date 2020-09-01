@@ -35,11 +35,9 @@ def run_hough():
 path1 = "../data/coins.png"
 path2 = "../data/check.bmp"
 path3 = "../data/simA.jpg"
-im = cv2.imread(path2, cv2.IMREAD_GRAYSCALE)
-print(im.shape)
+im = cv2.imread(path3, cv2.IMREAD_GRAYSCALE)
 
 im_grad = comp_grads(im)
-# im_grad = (im_grad - np.min(im_grad)) / (np.max(im_grad) - np.min(im_grad))
 im_grad = norm_image(im_grad)
 print(im_grad)
 cv2.imshow("image", im_grad)
