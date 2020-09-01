@@ -1,9 +1,7 @@
-import numpy as np
 import cv2
 from hough_transform import *
 import stereo
 from panorama import *
-from utils import *
 
 
 def run_disparity_ssd():
@@ -35,13 +33,8 @@ def run_hough():
 path1 = "../data/coins.png"
 path2 = "../data/check.bmp"
 path3 = "../data/simA.jpg"
-im = cv2.imread(path3, cv2.IMREAD_GRAYSCALE)
-
-im_grad = comp_grads(im)
-im_grad = norm_image(im_grad)
-print(im_grad)
-cv2.imshow("image", im_grad)
-cv2.waitKey(0)
+im_color = cv2.imread(path2)
+im = cv2.imread(path2, cv2.IMREAD_GRAYSCALE)
 
 
 
