@@ -1,18 +1,20 @@
-import stereo
-import cv2
 import numpy as np
+import cv2
 from hough_transform import *
+import stereo
+from panorama import *
+from utils import *
 
 
 def run_disparity_ssd():
-    path1 = '../images/pair2-L.png'
-    path2 = '../images/pair2-R.png'
+    path1 = '../data/pair2-L.png'
+    path2 = '../data/pair2-R.png'
 
-    # path1 = '../images/pair0-L.png'
-    # path2 = '../images/pair0-R.png'
+    # path1 = '../data/pair0-L.png'
+    # path2 = '../data/pair0-R.png'
 
-    l_im = cv2.imread(path1, cv2.IMREAD_GRAYSCALE)  # * (1.0 / 255.0)
-    r_im = cv2.imread(path2, cv2.IMREAD_GRAYSCALE)  # * (1.0 / 255.0)
+    l_im = cv2.imread(path1, cv2.IMREAD_GRAYSCALE)
+    r_im = cv2.imread(path2, cv2.IMREAD_GRAYSCALE)
 
     d_im = stereo.disparity_ssd(l_im, r_im, W=35)
     d_im = cv2.normalize(d_im, d_im, alpha=0, beta=255, norm_type=cv2.NORM_MINMAX)
@@ -21,14 +23,27 @@ def run_disparity_ssd():
     cv2.waitKey(0)
 
 
-
 def run_hough():
-    im_path0 = '../images/squares.png'
-    im_path1 = '../images/coins.png'
+    im_path0 = '../data/squares.png'
+    im_path1 = '../data/coins.png'
 
     find_circles(im_path1, [20, 25], threshold=10)
     find_lines(im_path1, threshold=80)
 
 
-run_disparity_ssd()
+
+path1 = "../data/coins.png"
+path2 = "../data/check.bmp"
+path3 = "../data/simA.jpg"
+im = cv2.imread(path2, cv2.IMREAD_GRAYSCALE)
+print(im.shape)
+
+im_grad = comp_grads(im)
+# im_grad = (im_grad - np.min(im_grad)) / (np.max(im_grad) - np.min(im_grad))
+im_grad = norm_image(im_grad)
+print(im_grad)
+cv2.imshow("image", im_grad)
+cv2.waitKey(0)
+
+
 
