@@ -14,7 +14,7 @@ def comp_grads(im):
     dim_x = convolve2d(im, dx, mode="same")
     dim_y = convolve2d(im, dy, mode="same")
 
-    return dx, dy, np.sqrt(dim_x**2 + dim_y**2)
+    return dim_x, dim_y
 
 
 
